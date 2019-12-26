@@ -1,0 +1,27 @@
+{
+  "name": "lambda-restapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infamousjoeg/lambda-restapi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infamousjoeg/lambda-restapi/issues"
+  },
+  "homepage": "https://github.com/infamousjoeg/lambda-restapi#readme",
+  "devDependencies": {
+    "serverless-python-requirements": "^5.0.1",
+    "serverless-wsgi": "^1.7.4"
+  },
+  "dependencies": {
+    "serverless": "^1.60.4"
+  }
+}

@@ -13,8 +13,19 @@
 
 service: lambda-restapi
 # app and org for use with dashboard.serverless.com
-#app: your-app-name
-#org: your-org-name
+app: lambda-restapi
+org: infamousjoeg
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+
+custom:
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: non-linux
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -23,10 +34,9 @@ service: lambda-restapi
 provider:
   name: aws
   runtime: python3.8
-
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
+  stage: dev
+  region: us-east-1
+  # cfnRole: arn:aws:iam::735280068473:role/cffa
 
 # you can add statements to the Lambda function's IAM Role here
 #  iamRoleStatements:
@@ -58,13 +68,14 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.hello
+  app:
+    handler: wsgi_handler.handler
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-#    events:
-#      - http:
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
 #          path: users/create
 #          method: get
 #      - websocket: $connect
